@@ -9,7 +9,6 @@ namespace Test
     {
         [TestCase(10)]
         [TestCase(11)]
-        [TestCase(15)]
         public void Test_Max_Number_Players_Lower_Than_Maximum(int maxNumberPlayers)
         {
             var exception = Assert.Throws<Exception>(() => new Table(maxNumberPlayers));

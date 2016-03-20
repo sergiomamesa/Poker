@@ -37,18 +37,32 @@ namespace Poker
             AddPlayer(player, freeSeat);
         }
 
+        public void AddPlayer(Player player, int seatNumber)
+        {
+            if (seatNumber > MaxNumberPlayers)
+                throw new Exception("Sorry, invalid seat number");
+
+            Seat seat = Seats[seatNumber];
+
+            AddPlayer(player, seatNumber);
+        }
+
         private void AddPlayer(Player player, Seat seat)
         {
-            //if (Seats.IsNoneEmpty())
-            //    throw new Exception("No seats empty on this table");
+            if (seat.IsEmpty() == false)
+                throw new Exception("Sorry, this seat has already a player");
 
             if (Seats.Select(i => i.Player).Contains(player))
                 throw new Exception("Sorry, selected player is already playing");
 
-            //if (seat.Status == SeatStatus.Playing)
-            //    throw new Exception("Sorry this seat has already a player");
-
             seat.Player = player;
+        }
+
+        public override string ToString()
+        {
+            //TODO: Implement me
+
+            return base.ToString();
         }
     }
 }

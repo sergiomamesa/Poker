@@ -72,7 +72,5 @@ namespace Test
            var exception = Assert.Throws<Exception>(() => table.AddPlayer(player));
            Assert.AreEqual(exception.Message, "Sorry, selected player is already playing");
         }
-
-
     }
 }
