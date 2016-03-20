@@ -14,7 +14,7 @@ namespace Test
         [TestCase(9)]
         public void Test_Generated_Seats_Are_Empty(int seatNumber)
         {
-            Table table = new Table(9, 4);
+            Table table = new Table(9);
             Seat seat = table.Seats[seatNumber];
 
             bool isEmpty = seat.IsEmpty();
@@ -25,7 +25,7 @@ namespace Test
         [Test]
         public void Test_Table_Has_Some_Empty_Seats()
         {
-            Table table = new Table(5, 2);
+            Table table = new Table(5);
             table.AddPlayer(new Player() { Name = "Player1" });
             table.AddPlayer(new Player() { Name = "Player2" });
             table.AddPlayer(new Player() { Name = "Player3" });
@@ -38,7 +38,7 @@ namespace Test
         [Test]
         public void Test_Table_Has_None_Empty_Seats()
         {
-            Table table = new Table(4, 2);
+            Table table = new Table(4);
             table.AddPlayer(new Player() { Name = "Player1" });
             table.AddPlayer(new Player() { Name = "Player2" });
             table.AddPlayer(new Player() { Name = "Player3" });
@@ -48,6 +48,31 @@ namespace Test
 
             Assert.AreEqual(expected, true);
         }
+
+        [Test]
+        public void Test_Table_Has_No_Empty_Seats()
+        {
+            Table table = new Table(4);
+            table.AddPlayer(new Player() { Name = "Player1" });
+            table.AddPlayer(new Player() { Name = "Player2" });
+            table.AddPlayer(new Player() { Name = "Player3" });
+            table.AddPlayer(new Player() { Name = "Player4" });
+
+           var exception = Assert.Throws<Exception>(() => table.AddPlayer(new Player() { Name = "Player5" }) );
+           Assert.AreEqual(exception.Message, "Sorry, not empty seat found");
+        }
+
+        [Test]
+        public void Test_Table_Already_Contains_Player()
+        {
+            Table table = new Table(4);
+            var player = new Player() { Name = "Player" };
+            table.AddPlayer(player);
+
+           var exception = Assert.Throws<Exception>(() => table.AddPlayer(player));
+           Assert.AreEqual(exception.Message, "Sorry, selected player is already playing");
+        }
+
 
     }
 }
