@@ -72,5 +72,38 @@ namespace Test
            Exception exception = Assert.Throws<Exception>(() => table.AddPlayer(player));
            Assert.AreEqual(exception.Message, "Sorry, selected player is already playing");
         }
+
+        [Test]
+        public void Test_Remove_Player_Empty_Table()
+        {
+            Table table = new Table(4);
+            var player = new Player() { Name = "Player1" };
+            
+            Exception exception = Assert.Throws<Exception>(() => table.RemovePlayer(player));
+            Assert.AreEqual(exception.Message, "This player is not sitting in the table");
+        }
+
+        [Test]
+        public void Test_Remove_Player_Does_Not_Exist()
+        {
+            Table table = new Table(4);
+            table.AddPlayer(new Player() { Name = "Player1" });
+            table.AddPlayer(new Player() { Name = "Player2" });
+            
+            Exception exception = Assert.Throws<Exception>(()=> table.RemovePlayer(new Player() { Name = "Player3" }));
+            Assert.AreEqual(exception.Message, "This player is not sitting in the table");
+        }
+
+        [Test]
+        public void Test_Remove_Player_From_Empty_Seat()
+        {
+            Table table = new Table(4);
+            table.AddPlayer(new Player() { Name = "Player1" });
+            table.AddPlayer(new Player() { Name = "Player2" });
+
+            Exception exception = Assert.Throws<Exception>(() => table.RemovePlayer(3));
+            Assert.AreEqual(exception.Message, "This seat is empty");
+        }
+
     }
 }

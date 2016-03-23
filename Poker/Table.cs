@@ -52,10 +52,53 @@ namespace Poker
             if (seat.IsEmpty() == false)
                 throw new Exception("Sorry, this seat has already a player");
 
-            if (Seats.Select(i => i.Player).Contains(player))
+            if (Seats.Select(s => s.Player).Contains(player))
                 throw new Exception("Sorry, selected player is already playing");
 
             seat.Player = player;
+        }
+
+        public void RemovePlayer(Player player)
+        {
+            Seat seat = Seats.Find(s => s.Player == player);
+
+            if (seat == null)
+                throw new Exception("This player is not sitting in the table");
+
+            RemovePlayer(player, seat);
+        }
+
+        public void RemovePlayer(int seatNumber)
+        {
+            Seat seat = Seats[seatNumber];
+
+            if (seat.IsEmpty())
+                throw new Exception("This seat is empty");
+
+            Player player = seat.Player;
+
+            RemovePlayer(player, seatNumber);
+        }
+
+        private void RemovePlayer(Player player, int seatNumber)
+        {
+            if (seatNumber > MaxNumberPlayers)
+                throw new Exception("Sorry, invalid seat number");
+            
+            Seat seat = Seats[seatNumber];
+
+            RemovePlayer(player, seat);
+        }
+
+        private void RemovePlayer(Player player, Seat seat)
+        {
+            if (seat.IsEmpty())
+                throw new Exception("Sorry, this seat is empty");
+
+            if (seat.Player != player)
+                throw new Exception("This player is not in this seat");
+            
+            seat.Player = null;
         }
 
         public override string ToString()
