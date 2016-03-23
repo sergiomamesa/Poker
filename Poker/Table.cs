@@ -16,6 +16,8 @@ namespace Poker
         private List<Player> Players;
         public SeatsList Seats;
 
+        private Deck Deck;
+
         public Table(int maxNumberPlayers)
         {
             if (maxNumberPlayers > MAX_NUMBER_SEATS)
@@ -28,6 +30,13 @@ namespace Poker
 
             Players = new List<Player>();
             Seats = SeatsList.GenerateEmptySeats(MaxNumberPlayers);
+        }
+
+        public void StartGame()
+        {
+            Deck = new Deck();
+            //Test
+
         }
 
         public void AddPlayer(Player player)

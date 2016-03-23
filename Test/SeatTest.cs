@@ -30,6 +30,7 @@ namespace Test
             table.AddPlayer(new Player() { Name = "Player2" });
             table.AddPlayer(new Player() { Name = "Player3" });
 
+
             bool expected = table.Seats.IsAnyEmpty();
 
             Assert.AreEqual(expected, true);

@@ -9,5 +9,7 @@ namespace Poker
     public class Player
     {
         public string Name;
+
+        public Hand Hand { get; set; }
     }
 }
