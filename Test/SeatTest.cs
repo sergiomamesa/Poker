@@ -30,7 +30,7 @@ namespace Test
             table.AddPlayer(new Player() { Name = "Player2" });
             table.AddPlayer(new Player() { Name = "Player3" });
 
-            var expected = table.Seats.IsAnyEmpty();
+            bool expected = table.Seats.IsAnyEmpty();
 
             Assert.AreEqual(expected, true);
         }
@@ -58,7 +58,7 @@ namespace Test
             table.AddPlayer(new Player() { Name = "Player3" });
             table.AddPlayer(new Player() { Name = "Player4" });
 
-           var exception = Assert.Throws<Exception>(() => table.AddPlayer(new Player() { Name = "Player5" }) );
+           Exception exception = Assert.Throws<Exception>(() => table.AddPlayer(new Player() { Name = "Player5" }) );
            Assert.AreEqual(exception.Message, "Sorry, not empty seat found");
         }
 
@@ -69,7 +69,7 @@ namespace Test
             var player = new Player() { Name = "Player" };
             table.AddPlayer(player);
 
-           var exception = Assert.Throws<Exception>(() => table.AddPlayer(player));
+           Exception exception = Assert.Throws<Exception>(() => table.AddPlayer(player));
            Assert.AreEqual(exception.Message, "Sorry, selected player is already playing");
         }
     }
