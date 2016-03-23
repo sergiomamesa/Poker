@@ -13,7 +13,7 @@ namespace Poker
 
         private int MaxNumberPlayers;
 
-        private List<Player> Players;
+        public List<Player> Players;
         public SeatsList Seats;
 
         private Deck Deck;
@@ -35,9 +35,13 @@ namespace Poker
         public void StartGame()
         {
             Deck = new Deck();
-            //Test
-            //fsdfsdf
+            
+            foreach (Player player in Players)
+                player.Hand.RightCard = Deck.GiveCard();
 
+            foreach (Player player in Players)
+                player.Hand.LeftCard = Deck.GiveCard();
+            
         }
 
         public void AddPlayer(Player player)

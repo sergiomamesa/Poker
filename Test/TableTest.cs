@@ -29,5 +29,30 @@ namespace Test
             var exception = Assert.Throws<Exception>(() => new Table(maxNumberPlayers));
             Assert.AreEqual(exception.Message, "MIN_NUMBER_PLAYERS cannot be greater than MaxNumberPlayers");
         }
+
+        [Test]
+        public void Test_Deck_has_52_Cards()
+        {
+            Deck Deck = new Deck();
+            var numberOfCards = Deck.Cards.Count;
+
+            Assert.AreEqual(numberOfCards, 52);
+        }
+
+        [Test]
+        public void Test_Game_Starts_Players_Have_Their_Cards()
+        {
+            Table table = new Table(4);
+            table.AddPlayer(new Player() { Name = "Player1" });
+            table.AddPlayer(new Player() { Name = "Player2" });
+            table.AddPlayer(new Player() { Name = "Player3" });
+
+            table.StartGame();
+
+            bool expected = table.Players[1].Hand.RightCard.Equals(null);
+
+            Assert.AreEqual(expected, false);
+        }
+
     }
 }
