@@ -3,10 +3,10 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{36FF6E5B-D94A-4964-9BA1-75C976B9D95A}</ProjectGuid>
+    <ProjectGuid>{55C51E52-3679-4061-9106-04F861FD5A28}</ProjectGuid>
     <OutputType>Exe</OutputType>
-    <RootNamespace>MonoConsole</RootNamespace>
-    <AssemblyName>MonoConsole</AssemblyName>
+    <RootNamespace>testConsole</RootNamespace>
+    <AssemblyName>testConsole</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">

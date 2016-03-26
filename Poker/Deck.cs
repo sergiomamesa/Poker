@@ -32,8 +32,8 @@ namespace Poker
         private void Shuffle()
         {
             var rnd = new Random();
-            Cards = (List<Card>)Cards.OrderBy(item => rnd.Next());
-
+//            Cards = (List<Card>)Cards.OrderBy(item => rnd.Next());
+			Cards = Cards.OrderBy (item => rnd.Next ()).ToList();
         }
 
         public Card GiveCard()

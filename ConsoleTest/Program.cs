@@ -12,8 +12,8 @@ namespace ConsoleTest
         static void Main(string[] args)
         {
             Deck Deck = new Deck();
-
-            Console.ReadLine();
+//			Console.WriteLine ("Success");
+//            Console.ReadLine();
         }
     }
 }
