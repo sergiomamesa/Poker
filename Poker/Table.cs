@@ -13,7 +13,7 @@ namespace Poker
 
         private int MaxNumberPlayers;
 
-        public List<Player> Players;
+        public IEnumerable<Player> Players { get { return Seats.Where(i => i.IsEmpty() == false).Select(i => i.Player); } }
         public SeatsList Seats;
 
         private Deck Deck;
@@ -28,20 +28,17 @@ namespace Poker
 
             MaxNumberPlayers = maxNumberPlayers;
 
-            Players = new List<Player>();
             Seats = SeatsList.GenerateEmptySeats(MaxNumberPlayers);
         }
 
         public void StartGame()
         {
             Deck = new Deck();
-            
-            foreach (Player player in Players)
-                player.Hand.RightCard = Deck.GiveCard();
 
             foreach (Player player in Players)
-                player.Hand.LeftCard = Deck.GiveCard();
-            
+            {
+                player.SetHand(Deck.GiveHand());
+            }
         }
 
         public void AddPlayer(Player player)
@@ -98,7 +95,7 @@ namespace Poker
         {
             if (seatNumber > MaxNumberPlayers)
                 throw new Exception("Sorry, invalid seat number");
-            
+
             Seat seat = Seats[seatNumber];
 
             RemovePlayer(player, seat);
@@ -111,7 +108,7 @@ namespace Poker
 
             if (seat.Player != player)
                 throw new Exception("This player is not in this seat");
-            
+
             seat.Player = null;
         }
 

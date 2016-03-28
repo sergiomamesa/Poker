@@ -25,5 +25,16 @@ namespace Poker
         {
             throw new NotImplementedException();
         }
+
+        public bool HasCards()
+        {
+            if (LeftCard == null)
+                return false;
+
+            if (RightCard == null)
+                return false;
+
+            return true;
+        }
     }
 }

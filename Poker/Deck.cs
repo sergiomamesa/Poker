@@ -8,7 +8,9 @@ namespace Poker
 {
     public class Deck
     {
-        public List<Card> Cards { get; set; }
+        private List<Card> Cards { get; set; }
+
+        public int RemainingCards { get { return Cards.Count; } }
 
         public Deck()
         {
@@ -32,15 +34,27 @@ namespace Poker
         private void Shuffle()
         {
             var rnd = new Random();
-//            Cards = (List<Card>)Cards.OrderBy(item => rnd.Next());
-			Cards = Cards.OrderBy (item => rnd.Next ()).ToList();
+            //            Cards = (List<Card>)Cards.OrderBy(item => rnd.Next());
+            Cards = Cards.OrderBy(item => rnd.Next()).ToList();
         }
 
-        public Card GiveCard()
+        private Card GiveCard()
         {
-            Card GivenCard = this.Cards.First();
+            Card card = this.Cards.First();
             this.Cards.RemoveAt(0);
-            return GivenCard;
+
+            return card;
+        }
+
+        public Hand GiveHand()
+        {
+            Hand hand = new Hand()
+            {
+                LeftCard = GiveCard(),
+                RightCard = GiveCard()
+            };
+
+            return hand;
         }
     }
 }
