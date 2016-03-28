@@ -24,6 +24,12 @@ namespace Poker
             Two = 0, Three, Four, Five, Six, Seven, Eight, Nine, Ten, Jack, Queen, King, Ace
         }
 
+        public Card(int suitIndex, int rankIndex)
+        {
+            Suit = (SuitType)suitIndex;
+            Rank = (RankType)rankIndex;
+        }
+
         public Card(SuitType suit, RankType rank)
         {
             Suit = suit;
