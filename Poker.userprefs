@@ -1,0 +1,35 @@
+﻿<Properties StartupItem="MonoConsole/MonoConsole.csproj">
+  <DisabledProjects>
+    <String>Test/Test.csproj</String>
+    <String>ConsoleTest/ConsoleTest.csproj</String>
+  </DisabledProjects>
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="Poker/Card.cs">
+    <Files>
+      <File FileName="Poker/Card.cs" Line="1" Column="1" />
+      <File FileName="Poker/Deck.cs" Line="41" Column="19" />
+      <File FileName="MonoConsole/Program.cs" Line="13" Column="14" />
+      <File FileName="Poker/Table.cs" Line="35" Column="9" />
+      <File FileName="Test/TableTest.cs" Line="53" Column="4" />
+      <File FileName="Poker/Seat.cs" Line="24" Column="1" />
+    </Files>
+    <Pads>
+      <Pad Id="ProjectPad">
+        <State name="__root__">
+          <Node name="Poker" expanded="True">
+            <Node name="MonoConsole" expanded="True" />
+            <Node name="Poker" expanded="True">
+              <Node name="Card.cs" selected="True" />
+            </Node>
+          </Node>
+        </State>
+      </Pad>
+    </Pads>
+  </MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.DebuggingService.Breakpoints>
+    <BreakpointStore>
+      <Breakpoint file="/home/manu/Projects/Poker.git/Poker/Deck.cs" line="41" column="19" />
+    </BreakpointStore>
+  </MonoDevelop.Ide.DebuggingService.Breakpoints>
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+</Properties>

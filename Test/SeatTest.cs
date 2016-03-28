@@ -30,7 +30,6 @@ namespace Test
             table.AddPlayer(new Player() { Name = "Player2" });
             table.AddPlayer(new Player() { Name = "Player3" });
 
-
             bool expected = table.Seats.IsAnyEmpty();
 
             Assert.AreEqual(expected, true);
@@ -59,8 +58,8 @@ namespace Test
             table.AddPlayer(new Player() { Name = "Player3" });
             table.AddPlayer(new Player() { Name = "Player4" });
 
-           Exception exception = Assert.Throws<Exception>(() => table.AddPlayer(new Player() { Name = "Player5" }) );
-           Assert.AreEqual(exception.Message, "Sorry, not empty seat found");
+            Exception exception = Assert.Throws<Exception>(() => table.AddPlayer(new Player() { Name = "Player5" }));
+            Assert.AreEqual(exception.Message, "Sorry, not empty seat found");
         }
 
         [Test]
@@ -70,8 +69,8 @@ namespace Test
             var player = new Player() { Name = "Player" };
             table.AddPlayer(player);
 
-           Exception exception = Assert.Throws<Exception>(() => table.AddPlayer(player));
-           Assert.AreEqual(exception.Message, "Sorry, selected player is already playing");
+            Exception exception = Assert.Throws<Exception>(() => table.AddPlayer(player));
+            Assert.AreEqual(exception.Message, "Sorry, selected player is already playing");
         }
 
         [Test]
@@ -79,7 +78,7 @@ namespace Test
         {
             Table table = new Table(4);
             var player = new Player() { Name = "Player1" };
-            
+
             Exception exception = Assert.Throws<Exception>(() => table.RemovePlayer(player));
             Assert.AreEqual(exception.Message, "This player is not sitting in the table");
         }
@@ -90,8 +89,8 @@ namespace Test
             Table table = new Table(4);
             table.AddPlayer(new Player() { Name = "Player1" });
             table.AddPlayer(new Player() { Name = "Player2" });
-            
-            Exception exception = Assert.Throws<Exception>(()=> table.RemovePlayer(new Player() { Name = "Player3" }));
+
+            Exception exception = Assert.Throws<Exception>(() => table.RemovePlayer(new Player() { Name = "Player3" }));
             Assert.AreEqual(exception.Message, "This player is not sitting in the table");
         }
 
