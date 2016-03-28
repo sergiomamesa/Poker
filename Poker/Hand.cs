@@ -13,17 +13,35 @@ namespace Poker
 
         public bool IsPaired()
         {
-            throw new NotImplementedException();
+            if (LeftCard.Rank == RightCard.Rank)
+                return true;
+
+            return false;
         }
 
         public bool IsSuited()
         {
-            throw new NotImplementedException();
+            if (LeftCard.Suit == RightCard.Suit)
+                return true;
+
+            return false;
         }
 
         public bool IsConnected()
         {
-            throw new NotImplementedException();
+            if (LeftCard.Rank.GetHashCode() == RightCard.Rank.GetHashCode() + 1)
+                return true;
+
+            if (RightCard.Rank.GetHashCode() == LeftCard.Rank.GetHashCode() + 1)
+                return true;
+
+            if (LeftCard.Rank.GetHashCode() == 0 && RightCard.Rank.GetHashCode() == 12)
+                return true;
+
+            if (RightCard.Rank.GetHashCode() == 0 && LeftCard.Rank.GetHashCode() == 12)
+                return true;
+
+            return false;
         }
 
         public bool HasCards()

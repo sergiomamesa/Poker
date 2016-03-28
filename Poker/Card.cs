@@ -8,8 +8,8 @@ namespace Poker
 {
     public class Card
     {
-        private SuitType Suit { get; set; }
-        private RankType Rank { get; set; }
+        public SuitType Suit { get; set; }
+        public RankType Rank { get; set; }
 
         public enum SuitType
         {
