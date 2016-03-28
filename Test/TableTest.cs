@@ -1,6 +1,7 @@
 ﻿using NUnit.Framework;
 using Poker;
 using System;
+using System.Linq;
 
 namespace Test
 {
@@ -34,7 +35,7 @@ namespace Test
         public void Test_Deck_has_52_Cards()
         {
             Deck Deck = new Deck();
-            var numberOfCards = Deck.Cards.Count;
+            int numberOfCards = Deck.RemainingCards;
 
             Assert.AreEqual(numberOfCards, 52);
         }
@@ -49,9 +50,9 @@ namespace Test
 
             table.StartGame();
 
-            bool expected = table.Players[1].Hand.RightCard.Equals(null);
+            bool expected = table.Players.ToList()[1].HasCards();
 
-            Assert.AreEqual(expected, false);
+            Assert.AreEqual(expected, true);
         }
 
     }

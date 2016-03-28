@@ -10,6 +10,19 @@ namespace Poker
     {
         public string Name;
 
-        public Hand Hand { get; set; }
+        public Hand Hand { get; private set; }
+
+        public void SetHand(Hand hand)
+        {
+            Hand = hand;
+        }
+
+        public bool HasCards()
+        {
+            if (Hand == null)
+                return false;
+
+            return Hand.HasCards();
+        }
     }
 }
