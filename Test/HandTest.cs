@@ -8,55 +8,95 @@ namespace Test
     [TestFixture]
     class HandTest
     {
-        [Test]
-        public void Hand_Cards_Are_Paired()
+
+        [TestCase(SuitType.Clubs, RankType.Ace, SuitType.Clubs, RankType.Ace)]
+        [TestCase(SuitType.Spades, RankType.Eight, SuitType.Spades, RankType.Eight)]
+        public void Test_Cards_Are_Duplicated(SuitType leftCardSuit, RankType leftCardRank,SuitType rightCardSuit, RankType rightCardRank)
         {
-            Table table = new Table(3);
-            table.AddPlayer(new Player() { Name = "Player1" });
+            Card leftCard = new Card(leftCardSuit, leftCardRank);
+            Card rightCard = new Card(rightCardSuit, rightCardRank);
 
-            table.StartGame();
+            Exception exception = Assert.Throws<Exception>(() => new Hand(leftCard, rightCard));
+            Assert.AreEqual(exception.Message, "Duplicated card!");
+        }
 
-            Player player = table.Players.ToList()[0];
-            player.Hand.LeftCard = new Card(1, 2);
-            player.Hand.RightCard = new Card(2, 2);
+        [TestCase(SuitType.Clubs, RankType.Ace, SuitType.Diamonds, RankType.Ace)]
+        [TestCase(SuitType.Spades, RankType.Eight, SuitType.Hearts, RankType.Eight)]
+        public void Test_Hand_Is_Paired(SuitType leftCardSuit, RankType leftCardRank,SuitType rightCardSuit, RankType rightCardRank)
+        {
+            Card leftCard = new Card(leftCardSuit, leftCardRank);
+            Card rightCard = new Card(rightCardSuit, rightCardRank);
+            Hand hand = new Hand(leftCard, rightCard);
 
-            bool expected = player.Hand.IsPaired();
+            bool expected = hand.IsPaired();
 
             Assert.AreEqual(expected, true);
         }
 
-        [Test]
-        public void Hand_Cards_Are_Suited()
+        [TestCase(SuitType.Clubs, RankType.Ace, SuitType.Diamonds, RankType.King)]
+        [TestCase(SuitType.Spades, RankType.Four, SuitType.Hearts, RankType.Eight)]
+        public void Test_Hand_Is_Not_Paired(SuitType leftCardSuit, RankType leftCardRank, SuitType rightCardSuit, RankType rightCardRank)
         {
-            Table table = new Table(3);
-            table.AddPlayer(new Player() { Name = "Player1" });
+            Card leftCard = new Card(leftCardSuit, leftCardRank);
+            Card rightCard = new Card(rightCardSuit, rightCardRank);
+            Hand hand = new Hand(leftCard, rightCard);
 
-            table.StartGame();
+            bool expected = hand.IsPaired();
 
-            Player player = table.Players.ToList()[0];
-            player.Hand.LeftCard = new Card(1, 2);
-            player.Hand.RightCard = new Card(1, 1);
+            Assert.AreEqual(expected, false);
+        }
 
-            bool expected = player.Hand.IsSuited();
+        [TestCase(SuitType.Clubs, RankType.Eight, SuitType.Clubs, RankType.Seven)]
+        [TestCase(SuitType.Spades, RankType.Eight, SuitType.Spades, RankType.Ace)]
+        public void Test_Hand_Is_Suited(SuitType leftCardSuit, RankType leftCardRank, SuitType rightCardSuit, RankType rightCardRank)
+        {
+            Card leftCard = new Card(leftCardSuit, leftCardRank);
+            Card rightCard = new Card(rightCardSuit, rightCardRank);
+            Hand hand = new Hand(leftCard, rightCard);
+
+            bool expected = hand.IsSuited();
 
             Assert.AreEqual(expected, true);
         }
 
-        [Test]
-        public void Hand_Cards_Are_Connected()
+        [TestCase(SuitType.Spades, RankType.Eight, SuitType.Clubs, RankType.Seven)]
+        [TestCase(SuitType.Hearts, RankType.Eight, SuitType.Spades, RankType.Ace)]
+        public void Test_Hand_Is_Not_Suited(SuitType leftCardSuit, RankType leftCardRank, SuitType rightCardSuit, RankType rightCardRank)
         {
-            Table table = new Table(3);
-            table.AddPlayer(new Player() { Name = "Player1" });
+            Card leftCard = new Card(leftCardSuit, leftCardRank);
+            Card rightCard = new Card(rightCardSuit, rightCardRank);
+            Hand hand = new Hand(leftCard, rightCard);
 
-            table.StartGame();
+            bool expected = hand.IsSuited();
 
-            Player player = table.Players.ToList()[0];
-            player.Hand.LeftCard = new Card(1, 0);
-            player.Hand.RightCard = new Card(2, 12);
+            Assert.AreEqual(expected, false);
+        }
 
-            bool expected = player.Hand.IsConnected();
+        [TestCase(SuitType.Clubs, RankType.Eight,SuitType.Clubs, RankType.Seven)]
+        [TestCase(SuitType.Spades, RankType.King,SuitType.Spades, RankType.Ace)]
+        [TestCase(SuitType.Spades, RankType.Two,SuitType.Spades, RankType.Ace)]
+        public void Test_Hand_Is_Connected(SuitType leftCardSuit, RankType leftCardRank, SuitType rightCardSuit, RankType rightCardRank)
+        {
+            Card leftCard = new Card(leftCardSuit, leftCardRank);
+            Card rightCard = new Card(rightCardSuit, rightCardRank);
+            Hand hand = new Hand(leftCard, rightCard);
+
+            bool expected = hand.IsConnected();
 
             Assert.AreEqual(expected, true);
+        }
+
+        [TestCase(SuitType.Clubs, RankType.Eight, SuitType.Clubs, RankType.Five)]
+        [TestCase(SuitType.Spades, RankType.King, SuitType.Spades, RankType.Jack)]
+        public void Test_Hand_Is_Not_Connected(SuitType leftCardSuit, RankType leftCardRank, SuitType rightCardSuit, RankType rightCardRank)
+        {
+            Card leftCard = new Card(leftCardSuit, leftCardRank);
+            Card rightCard = new Card(rightCardSuit, rightCardRank);
+            Hand hand = new Hand(leftCard, rightCard);
+
+            bool expected = hand.IsConnected();
+
+            Assert.AreEqual(expected, false);
         }
     }
 }
