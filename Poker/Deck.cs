@@ -21,11 +21,11 @@ namespace Poker
         private void Initialise()
         {
             Cards = new List<Card>();
-            foreach (Card.SuitType s in Enum.GetValues(typeof(Card.SuitType)))
+            foreach (SuitType suit in Enum.GetValues(typeof(SuitType)))
             {
-                foreach (Card.RankType r in Enum.GetValues(typeof(Card.RankType)))
+                foreach (RankType rank in Enum.GetValues(typeof(RankType)))
                 {
-                    Card Card = new Card(s, r);
+                    Card Card = new Card(suit, rank);
                     Cards.Add(Card);
                 }
             }
@@ -48,11 +48,10 @@ namespace Poker
 
         public Hand GiveHand()
         {
-            Hand hand = new Hand()
-            {
-                LeftCard = GiveCard(),
-                RightCard = GiveCard()
-            };
+            Card leftCard = GiveCard();
+            Card rightCard = GiveCard();
+
+            Hand hand = new Hand(leftCard, rightCard);
 
             return hand;
         }

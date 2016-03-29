@@ -11,6 +11,15 @@ namespace Poker
         public Card LeftCard { get; set; }
         public Card RightCard { get; set; }
 
+        public Hand(Card leftCard, Card rightCard)
+        {
+            if (leftCard.Equals(rightCard))
+                throw new Exception("Duplicated card!");
+
+            LeftCard = leftCard;
+            RightCard = rightCard;
+        }
+       
         public bool IsPaired()
         {
             if (LeftCard.Rank == RightCard.Rank)
