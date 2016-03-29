@@ -75,6 +75,7 @@ namespace Test
         [TestCase(SuitType.Clubs, RankType.Eight,SuitType.Clubs, RankType.Seven)]
         [TestCase(SuitType.Spades, RankType.King,SuitType.Spades, RankType.Ace)]
         [TestCase(SuitType.Spades, RankType.Two,SuitType.Spades, RankType.Ace)]
+        [TestCase(SuitType.Spades, RankType.Ace, SuitType.Spades, RankType.Two)]
         public void Test_Hand_Is_Connected(SuitType leftCardSuit, RankType leftCardRank, SuitType rightCardSuit, RankType rightCardRank)
         {
             Card leftCard = new Card(leftCardSuit, leftCardRank);

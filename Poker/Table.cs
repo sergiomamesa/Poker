@@ -71,7 +71,6 @@ namespace Poker
         public void RemovePlayer(Player player)
         {
             Seat seat = Seats.Find(s => s.Player == player);
-
             if (seat == null)
                 throw new Exception("This player is not sitting in the table");
 
@@ -81,7 +80,6 @@ namespace Poker
         public void RemovePlayer(int seatNumber)
         {
             Seat seat = Seats[seatNumber];
-
             if (seat.IsEmpty())
                 throw new Exception("This seat is empty");
 
@@ -111,11 +109,11 @@ namespace Poker
             seat.Player = null;
         }
 
-        public override string ToString()
-        {
-            //TODO: Implement me
+        //public override string ToString()
+        //{
+        //    //TODO: Implement me
 
-            return base.ToString();
-        }
+        //    return base.ToString();
+        //}
     }
 }

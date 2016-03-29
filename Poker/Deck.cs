@@ -38,7 +38,7 @@ namespace Poker
             Cards = Cards.OrderBy(item => rnd.Next()).ToList();
         }
 
-        private Card GiveCard()
+        public Card GiveCard()
         {
             Card card = this.Cards.First();
             this.Cards.RemoveAt(0);
