@@ -22,7 +22,7 @@ namespace Poker
             if (Hand == null)
                 return false;
 
-            return Hand.HasCards();
+            return Hand.HasTwoCards();
         }
     }
 }

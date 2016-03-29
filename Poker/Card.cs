@@ -24,12 +24,6 @@ namespace Poker
         public SuitType Suit { get; set; }
         public RankType Rank { get; set; }
 
-        //public Card(int suitIndex, int rankIndex)
-        //{
-        //    Suit = (SuitType)suitIndex;
-        //    Rank = (RankType)rankIndex;
-        //}
-
         public Card(SuitType suit, RankType rank)
         {
             Suit = suit;
@@ -38,6 +32,8 @@ namespace Poker
 
         public override bool Equals(object obj)
         {
+
+
             Card cardToCompare = (Card)obj;
             if (cardToCompare.Rank != this.Rank)
                 return false;
@@ -47,7 +43,11 @@ namespace Poker
 
             return true;
         }
-        
+
+        public override int GetHashCode()
+        {
+            return base.GetHashCode();
+        }
     }
     
 }
