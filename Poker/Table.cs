@@ -54,15 +54,14 @@ namespace Poker
                 throw new Exception("Sorry, invalid seat number");
 
             Seat seat = Seats[seatNumber];
+            if (seat.IsEmpty() == false)
+                throw new Exception("Sorry, this seat has already a player");
 
             AddPlayer(player, seatNumber);
         }
 
         private void AddPlayer(Player player, Seat seat)
         {
-            if (seat.IsEmpty() == false)
-                throw new Exception("Sorry, this seat has already a player");
-
             if (Seats.Select(s => s.Player).Contains(player))
                 throw new Exception("Sorry, selected player is already playing");
 

@@ -13,11 +13,11 @@ namespace Poker
 
         public Hand(Card leftCard, Card rightCard)
         {
-            if (leftCard.Equals(rightCard))
-                throw new Exception("Duplicated card!");
-
             LeftCard = leftCard;
             RightCard = rightCard;
+
+            //if (leftCard.Equals(rightCard))
+            //    throw new Exception("Duplicated card!");
         }
        
         public bool IsPaired()
@@ -53,7 +53,7 @@ namespace Poker
             return false;
         }
 
-        public bool HasCards()
+        public bool HasTwoCards()
         {
             if (LeftCard == null)
                 return false;
