@@ -73,6 +73,7 @@
     <Compile Include="TableTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SeatTest.cs" />
+    <Compile Include="PlayerTest.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

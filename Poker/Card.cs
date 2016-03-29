@@ -30,24 +30,24 @@ namespace Poker
             Rank = rank;
         }
 
-        public override bool Equals(object obj)
-        {
+        //public override bool Equals(object obj)
+        //{
 
 
-            Card cardToCompare = (Card)obj;
-            if (cardToCompare.Rank != this.Rank)
-                return false;
+        //    Card cardToCompare = (Card)obj;
+        //    if (cardToCompare.Rank != this.Rank)
+        //        return false;
 
-            if (cardToCompare.Suit != this.Suit)
-                return false;
+        //    if (cardToCompare.Suit != this.Suit)
+        //        return false;
 
-            return true;
-        }
+        //    return true;
+        //}
 
-        public override int GetHashCode()
-        {
-            return base.GetHashCode();
-        }
+        //public override int GetHashCode()
+        //{
+        //    return base.GetHashCode();
+        //}
     }
     
 }
