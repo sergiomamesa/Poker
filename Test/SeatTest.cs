@@ -63,6 +63,25 @@ namespace Test
         }
 
         [Test]
+        public void Test_Table_AddPlayer_Specific_Seat()
+        {
+            Table table = new Table(4);
+
+            Exception exception = Assert.Throws<Exception>(() => table.AddPlayer(new Player() { Name = "Player" }, 12));
+            Assert.AreEqual(exception.Message, "Sorry, invalid seat number");
+        }
+
+        [Test]
+        public void Test_Table_AddPlayer_Already_Player_Sitting()
+        {
+            Table table = new Table(4);
+            table.AddPlayer(new Player() { Name = "Player" }, 3);
+
+            Exception exception = Assert.Throws<Exception>(() => table.AddPlayer(new Player() { Name = "Player" }, 3));
+            Assert.AreEqual(exception.Message, "Sorry, this seat has already a player");
+        }
+
+        [Test]
         public void Test_Table_Already_Contains_Player()
         {
             Table table = new Table(4);
@@ -81,6 +100,16 @@ namespace Test
 
             Exception exception = Assert.Throws<Exception>(() => table.RemovePlayer(player));
             Assert.AreEqual(exception.Message, "This player is not sitting in the table");
+        }
+
+        [Test]
+        public void Test_Remove_Player_By_Player()
+        {
+            Table table = new Table(4);
+            Player player = new Player() { Name = "Player1" };
+            table.AddPlayer(player);
+
+            Assert.DoesNotThrow(() => table.RemovePlayer(player));
         }
 
         [Test]
@@ -103,6 +132,27 @@ namespace Test
 
             Exception exception = Assert.Throws<Exception>(() => table.RemovePlayer(3));
             Assert.AreEqual(exception.Message, "This seat is empty");
+        }
+
+        [Test]
+        public void Test_Remove_Player_From_Non_Existing_Seat()
+        {
+            Table table = new Table(4);
+            table.AddPlayer(new Player() { Name = "Player1" });
+            table.AddPlayer(new Player() { Name = "Player2" });
+
+            Exception exception = Assert.Throws<Exception>(() => table.RemovePlayer(8));
+            Assert.AreEqual(exception.Message, "Sorry, sit not found");
+        }
+
+        [Test]
+        public void Test_Remove_Player_From_Seat_Number()
+        {
+            Table table = new Table(4);
+            table.AddPlayer(new Player() { Name = "Player1" });
+            table.AddPlayer(new Player() { Name = "Player2" });
+
+            Assert.DoesNotThrow(() => table.RemovePlayer(2));
         }
 
     }
