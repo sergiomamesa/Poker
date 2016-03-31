@@ -46,6 +46,13 @@ namespace Poker
             return card;
         }
 
+        public Card GiveSpecificCard(Card card)
+        {
+            Cards.Remove(card);
+
+            return card;
+        }
+
         public Hand GiveHand()
         {
             Card leftCard = GiveCard();
