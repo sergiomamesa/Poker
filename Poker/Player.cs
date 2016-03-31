@@ -8,13 +8,33 @@ namespace Poker
 {
     public class Player
     {
-        public string Name;
+        public decimal Stack;
+
+        public decimal Bet;
+
+        public bool IsDealer { get; private set; }
+
+        public bool IsMe;
 
         public Hand Hand { get; private set; }
+
+        public Player(decimal stack, decimal bet, bool isMe = false)
+        {
+            Stack = Stack;
+            Bet = Bet;
+            IsMe = isMe;
+
+            IsDealer = false;
+        }
 
         public void SetHand(Hand hand)
         {
             Hand = hand;
+        }
+
+        public void SetDealer(bool value)
+        {
+            IsDealer = value;
         }
 
         public bool HasCards()

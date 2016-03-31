@@ -11,10 +11,10 @@ namespace Test
         [Test]
         public void Test_BoardState_Is_PreFlop()
         {
-            Table table = new Table(4);
-            table.AddPlayer(new Player() { Name = "Player1" });
-            table.AddPlayer(new Player() { Name = "Player2" });
-            table.AddPlayer(new Player() { Name = "Player3" });
+            Table table = new Table(4,0);
+            table.AddPlayer(new Player(500,0));
+            table.AddPlayer(new Player(500,0));
+            table.AddPlayer(new Player(500,0));
 
             table.StartGame();
 
@@ -24,10 +24,10 @@ namespace Test
         [Test]
         public void Test_BoardState_Is_Flop()
         {
-            Table table = new Table(4);
-            table.AddPlayer(new Player() { Name = "Player1" });
-            table.AddPlayer(new Player() { Name = "Player2" });
-            table.AddPlayer(new Player() { Name = "Player3" });
+            Table table = new Table(4,0);
+            table.AddPlayer(new Player(500,0));
+            table.AddPlayer(new Player(500,0));
+            table.AddPlayer(new Player(500,0));
 
             table.StartGame();
             table.Flop();
@@ -38,10 +38,10 @@ namespace Test
         [Test]
         public void Test_Board_State_Is_Turn()
         {
-            Table table = new Table(4);
-            table.AddPlayer(new Player() { Name = "Player1" });
-            table.AddPlayer(new Player() { Name = "Player2" });
-            table.AddPlayer(new Player() { Name = "Player3" });
+            Table table = new Table(4,0);
+            table.AddPlayer(new Player(500,0));
+            table.AddPlayer(new Player(500,0));
+            table.AddPlayer(new Player(500,0));
 
             table.StartGame();
             table.Flop();
@@ -53,10 +53,10 @@ namespace Test
         [Test]
         public void Test_Board_Didnt_Go_Through_Flop()
         {
-            Table table = new Table(4);
-            table.AddPlayer(new Player() { Name = "Player1" });
-            table.AddPlayer(new Player() { Name = "Player2" });
-            table.AddPlayer(new Player() { Name = "Player3" });
+            Table table = new Table(4,0);
+            table.AddPlayer(new Player(500,0));
+            table.AddPlayer(new Player(500,0));
+            table.AddPlayer(new Player(500,0));
 
             table.StartGame();
 
@@ -67,10 +67,10 @@ namespace Test
         [Test]
         public void Test_Board_state_is_River()
         {
-            Table table = new Table(4);
-            table.AddPlayer(new Player() { Name = "Player1" });
-            table.AddPlayer(new Player() { Name = "Player2" });
-            table.AddPlayer(new Player() { Name = "Player3" });
+            Table table = new Table(4,0);
+            table.AddPlayer(new Player(500,0));
+            table.AddPlayer(new Player(500,0));
+            table.AddPlayer(new Player(500,0));
 
             table.StartGame();
             table.Flop();
@@ -83,10 +83,10 @@ namespace Test
         [Test]
         public void Test_Board_Didnt_Go_Through_Turn()
         {
-            Table table = new Table(4);
-            table.AddPlayer(new Player() { Name = "Player1" });
-            table.AddPlayer(new Player() { Name = "Player2" });
-            table.AddPlayer(new Player() { Name = "Player3" });
+            Table table = new Table(4,0);
+            table.AddPlayer(new Player(500,0));
+            table.AddPlayer(new Player(500,0));
+            table.AddPlayer(new Player(500,0));
 
             table.StartGame();
             table.Flop();
