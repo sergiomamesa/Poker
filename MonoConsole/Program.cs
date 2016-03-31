@@ -6,12 +6,12 @@ namespace MonoConsole
 	{
 		public static void Main (string[] args)
 		{
-			Table table = new Table(5);
-			table.AddPlayer(new Player() { Name = "Player1" });
-			table.AddPlayer(new Player() { Name = "Player2" });
-			table.AddPlayer(new Player() { Name = "Player3" });
+			Table table = new Table(5, 0);
+			table.AddPlayer(new Player(500,0));
+			table.AddPlayer(new Player(500,0));
+			table.AddPlayer(new Player(500,0));
 			table.StartGame ();
-			bool expected = table.Seats [1].Player.Hand.LeftCard.Equals (null);
+			bool expected = table.Seats[1].Player.Hand.LeftCard.Equals (null);
 
 			Console.WriteLine (expected.ToString());
 

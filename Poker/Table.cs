@@ -17,10 +17,11 @@ namespace Poker
         public SeatsList Seats;
 
         private Deck Deck;
-
         public Board Board;
 
-        public Table(int maxNumberPlayers)
+        public decimal Pot;
+
+        public Table(int maxNumberPlayers, decimal pot)
         {
             if (maxNumberPlayers > MAX_NUMBER_SEATS)
                 throw new Exception(String.Format("MaxNumberPlayers cannont exceed {0}", MAX_NUMBER_SEATS));
@@ -29,6 +30,7 @@ namespace Poker
                 throw new Exception("MIN_NUMBER_PLAYERS cannot be greater than MaxNumberPlayers");
 
             MaxNumberPlayers = maxNumberPlayers;
+            Pot = pot;
 
             Seats = SeatsList.GenerateEmptySeats(MaxNumberPlayers);
         }
@@ -155,6 +157,18 @@ namespace Poker
 
             seat.Player = null;
         }
+
+        public void SetAsDealer(int seatNumber)
+        {
+            foreach (Player player in Players)
+            {
+                player.SetDealer(false);
+            }
+
+            Player dealerPlayer = Seats[seatNumber].Player;
+            dealerPlayer.SetDealer(true);
+        }
+
 
         //public override string ToString()
         //{
