@@ -11,22 +11,49 @@ namespace Poker
         public Card LeftCard { get; set; }
         public Card RightCard { get; set; }
 
+        public Hand(Card leftCard, Card rightCard)
+        {
+            LeftCard = leftCard;
+            RightCard = rightCard;
+
+            //if (leftCard.Equals(rightCard))
+            //    throw new Exception("Duplicated card!");
+        }
+       
         public bool IsPaired()
         {
-            throw new NotImplementedException();
+            if (LeftCard.Rank == RightCard.Rank)
+                return true;
+
+            return false;
         }
 
         public bool IsSuited()
         {
-            throw new NotImplementedException();
+            if (LeftCard.Suit == RightCard.Suit)
+                return true;
+
+            return false;
         }
 
         public bool IsConnected()
         {
-            throw new NotImplementedException();
+            if (LeftCard.Rank.GetHashCode() == RightCard.Rank.GetHashCode() + 1)
+                return true;
+
+            if (RightCard.Rank.GetHashCode() == LeftCard.Rank.GetHashCode() + 1)
+                return true;
+
+            if (LeftCard.Rank.GetHashCode() == 0 && RightCard.Rank.GetHashCode() == 12)
+                return true;
+
+            if (RightCard.Rank.GetHashCode() == 0 && LeftCard.Rank.GetHashCode() == 12)
+                return true;
+
+            return false;
         }
 
-        public bool HasCards()
+        public bool HasTwoCards()
         {
             if (LeftCard == null)
                 return false;

@@ -18,6 +18,8 @@ namespace Poker
 
         private Deck Deck;
 
+        public Board Board;
+
         public Table(int maxNumberPlayers)
         {
             if (maxNumberPlayers > MAX_NUMBER_SEATS)
@@ -34,13 +36,78 @@ namespace Poker
         public void StartGame()
         {
             Deck = new Deck();
-
+            Board = new Board();
             foreach (Player player in Players)
             {
                 player.SetHand(Deck.GiveHand());
             }
+
+            Board.SetBoardState();
         }
 
+        public void Flop()
+        {
+            if (Board.BoardState != BoardStateType.Preflop)
+                throw new Exception("The board is not in PreFlop!");
+
+            Deck.GiveCard(); //burns card
+            Board.FirstCard = Deck.GiveCard();
+            Board.SecondCard = Deck.GiveCard();
+            Board.ThirdCard = Deck.GiveCard();
+            Board.SetBoardState();
+        }
+
+        public void Turn()
+        {
+            if (Board.BoardState != BoardStateType.Flop)
+                throw new Exception("The board has to go through Flop first!");
+            Deck.GiveCard(); //burns card
+            Board.FourthCard = Deck.GiveCard();
+            Board.SetBoardState();
+        }
+
+        public void River()
+        {
+            if (Board.BoardState != BoardStateType.Turn)
+                throw new Exception("The board has to go through Turn first!");
+
+            Deck.GiveCard(); //burns card
+            Board.FifthCard = Deck.GiveCard();
+            Board.SetBoardState();
+        }
+
+        public void Flop(Card firstCard, Card secondCard, Card thirdCard)
+        {
+            if (Board.BoardState != BoardStateType.Preflop)
+                throw new Exception("The board is not in PreFlop!");
+
+            Deck.GiveCard();
+            Board.FirstCard = Deck.GiveSpecificCard(firstCard);
+            Board.SecondCard = Deck.GiveSpecificCard(secondCard);
+            Board.ThirdCard = Deck.GiveSpecificCard(thirdCard);
+            Board.SetBoardState();
+        }
+
+        public void Turn(Card fourthCard)
+        {
+            if (Board.BoardState != BoardStateType.Flop)
+                throw new Exception("The board has to go through Flop first!");
+
+            Deck.GiveCard();
+            Board.ThirdCard = Deck.GiveSpecificCard(fourthCard);
+            Board.SetBoardState();
+        }
+
+        public void River(Card fifthCard)
+        {
+            if (Board.BoardState != BoardStateType.Turn)
+                throw new Exception("The board has to go through Turn first!");
+
+            Deck.GiveCard();
+            Board.FifthCard = Deck.GiveSpecificCard(fifthCard);
+            Board.SetBoardState();
+        }
+        
         public void AddPlayer(Player player)
         {
             Seat freeSeat = Seats.GetFreeSeat();
@@ -54,15 +121,14 @@ namespace Poker
                 throw new Exception("Sorry, invalid seat number");
 
             Seat seat = Seats[seatNumber];
+            if (seat.IsEmpty() == false)
+                throw new Exception("Sorry, this seat has already a player");
 
-            AddPlayer(player, seatNumber);
+            AddPlayer(player, seat);
         }
 
         private void AddPlayer(Player player, Seat seat)
         {
-            if (seat.IsEmpty() == false)
-                throw new Exception("Sorry, this seat has already a player");
-
             if (Seats.Select(s => s.Player).Contains(player))
                 throw new Exception("Sorry, selected player is already playing");
 
@@ -72,51 +138,29 @@ namespace Poker
         public void RemovePlayer(Player player)
         {
             Seat seat = Seats.Find(s => s.Player == player);
-
             if (seat == null)
                 throw new Exception("This player is not sitting in the table");
-
-            RemovePlayer(player, seat);
-        }
-
-        public void RemovePlayer(int seatNumber)
-        {
-            Seat seat = Seats[seatNumber];
-
-            if (seat.IsEmpty())
-                throw new Exception("This seat is empty");
-
-            Player player = seat.Player;
-
-            RemovePlayer(player, seatNumber);
-        }
-
-        private void RemovePlayer(Player player, int seatNumber)
-        {
-            if (seatNumber > MaxNumberPlayers)
-                throw new Exception("Sorry, invalid seat number");
-
-            Seat seat = Seats[seatNumber];
-
-            RemovePlayer(player, seat);
-        }
-
-        private void RemovePlayer(Player player, Seat seat)
-        {
-            if (seat.IsEmpty())
-                throw new Exception("Sorry, this seat is empty");
-
-            if (seat.Player != player)
-                throw new Exception("This player is not in this seat");
 
             seat.Player = null;
         }
 
-        public override string ToString()
+        public void RemovePlayer(int seatNumber)
         {
-            //TODO: Implement me
+            Seat seat = Seats.Find(s => s.SeatNumber == seatNumber);
+            if (seat == null)
+                throw new Exception("Sorry, sit not found");
 
-            return base.ToString();
+            if (seat.IsEmpty())
+                throw new Exception("This seat is empty");
+
+            seat.Player = null;
         }
+
+        //public override string ToString()
+        //{
+        //    //TODO: Implement me
+
+        //    return base.ToString();
+        //}
     }
 }
