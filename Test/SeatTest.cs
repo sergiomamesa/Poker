@@ -14,7 +14,7 @@ namespace Test
         [TestCase(9)]
         public void Test_Generated_Seats_Are_Empty(int seatNumber)
         {
-            Table table = new Table(9);
+            Table table = new Table(9, 0);
             Seat seat = table.Seats[seatNumber];
 
             bool isEmpty = seat.IsEmpty();
@@ -25,10 +25,10 @@ namespace Test
         [Test]
         public void Test_Table_Has_Some_Empty_Seats()
         {
-            Table table = new Table(5);
-            table.AddPlayer(new Player() { Name = "Player1" });
-            table.AddPlayer(new Player() { Name = "Player2" });
-            table.AddPlayer(new Player() { Name = "Player3" });
+            Table table = new Table(5, 0);
+            table.AddPlayer(new Player(500, 0));
+            table.AddPlayer(new Player(500, 0));
+            table.AddPlayer(new Player(500, 0));
 
             bool expected = table.Seats.IsAnyEmpty();
 
@@ -38,11 +38,11 @@ namespace Test
         [Test]
         public void Test_Table_Has_None_Empty_Seats()
         {
-            Table table = new Table(4);
-            table.AddPlayer(new Player() { Name = "Player1" });
-            table.AddPlayer(new Player() { Name = "Player2" });
-            table.AddPlayer(new Player() { Name = "Player3" });
-            table.AddPlayer(new Player() { Name = "Player4" });
+            Table table = new Table(4, 0);
+            table.AddPlayer(new Player(500, 0));
+            table.AddPlayer(new Player(500, 0));
+            table.AddPlayer(new Player(500, 0));
+            table.AddPlayer(new Player(500, 0));
 
             bool expected = table.Seats.IsNoneEmpty();
 
@@ -52,40 +52,40 @@ namespace Test
         [Test]
         public void Test_Table_Has_No_Empty_Seats()
         {
-            Table table = new Table(4);
-            table.AddPlayer(new Player() { Name = "Player1" });
-            table.AddPlayer(new Player() { Name = "Player2" });
-            table.AddPlayer(new Player() { Name = "Player3" });
-            table.AddPlayer(new Player() { Name = "Player4" });
+            Table table = new Table(4, 0);
+            table.AddPlayer(new Player(500, 0));
+            table.AddPlayer(new Player(500, 0));
+            table.AddPlayer(new Player(500, 0));
+            table.AddPlayer(new Player(500, 0));
 
-            Exception exception = Assert.Throws<Exception>(() => table.AddPlayer(new Player() { Name = "Player5" }));
+            Exception exception = Assert.Throws<Exception>(() => table.AddPlayer(new Player(500,0)));
             Assert.AreEqual(exception.Message, "Sorry, not empty seat found");
         }
 
         [Test]
         public void Test_Table_AddPlayer_Specific_Seat()
         {
-            Table table = new Table(4);
+            Table table = new Table(4, 0);
 
-            Exception exception = Assert.Throws<Exception>(() => table.AddPlayer(new Player() { Name = "Player" }, 12));
+            Exception exception = Assert.Throws<Exception>(() => table.AddPlayer(new Player(500,0), 12));
             Assert.AreEqual(exception.Message, "Sorry, invalid seat number");
         }
 
         [Test]
         public void Test_Table_AddPlayer_Already_Player_Sitting()
         {
-            Table table = new Table(4);
-            table.AddPlayer(new Player() { Name = "Player" }, 3);
+            Table table = new Table(4, 0);
+            table.AddPlayer(new Player(500,0), 3);
 
-            Exception exception = Assert.Throws<Exception>(() => table.AddPlayer(new Player() { Name = "Player" }, 3));
+            Exception exception = Assert.Throws<Exception>(() => table.AddPlayer(new Player(500,0), 3));
             Assert.AreEqual(exception.Message, "Sorry, this seat has already a player");
         }
 
         [Test]
         public void Test_Table_Already_Contains_Player()
         {
-            Table table = new Table(4);
-            var player = new Player() { Name = "Player" };
+            Table table = new Table(4, 0);
+            var player = new Player(500, 0);
             table.AddPlayer(player);
 
             Exception exception = Assert.Throws<Exception>(() => table.AddPlayer(player));
@@ -95,8 +95,8 @@ namespace Test
         [Test]
         public void Test_Remove_Player_Empty_Table()
         {
-            Table table = new Table(4);
-            var player = new Player() { Name = "Player1" };
+            Table table = new Table(4, 0);
+            var player = new Player(500, 0);
 
             Exception exception = Assert.Throws<Exception>(() => table.RemovePlayer(player));
             Assert.AreEqual(exception.Message, "This player is not sitting in the table");
@@ -105,8 +105,8 @@ namespace Test
         [Test]
         public void Test_Remove_Player_By_Player()
         {
-            Table table = new Table(4);
-            Player player = new Player() { Name = "Player1" };
+            Table table = new Table(4, 0);
+            Player player = new Player(500, 0);
             table.AddPlayer(player);
 
             Assert.DoesNotThrow(() => table.RemovePlayer(player));
@@ -115,20 +115,20 @@ namespace Test
         [Test]
         public void Test_Remove_Player_Does_Not_Exist()
         {
-            Table table = new Table(4);
-            table.AddPlayer(new Player() { Name = "Player1" });
-            table.AddPlayer(new Player() { Name = "Player2" });
+            Table table = new Table(4, 0);
+            table.AddPlayer(new Player(500,0));
+            table.AddPlayer(new Player(500,0));
 
-            Exception exception = Assert.Throws<Exception>(() => table.RemovePlayer(new Player() { Name = "Player3" }));
+            Exception exception = Assert.Throws<Exception>(() => table.RemovePlayer(new Player(500,0)));
             Assert.AreEqual(exception.Message, "This player is not sitting in the table");
         }
 
         [Test]
         public void Test_Remove_Player_From_Empty_Seat()
         {
-            Table table = new Table(4);
-            table.AddPlayer(new Player() { Name = "Player1" });
-            table.AddPlayer(new Player() { Name = "Player2" });
+            Table table = new Table(4, 0);
+            table.AddPlayer(new Player(500,0));
+            table.AddPlayer(new Player(500,0));
 
             Exception exception = Assert.Throws<Exception>(() => table.RemovePlayer(3));
             Assert.AreEqual(exception.Message, "This seat is empty");
@@ -137,9 +137,9 @@ namespace Test
         [Test]
         public void Test_Remove_Player_From_Non_Existing_Seat()
         {
-            Table table = new Table(4);
-            table.AddPlayer(new Player() { Name = "Player1" });
-            table.AddPlayer(new Player() { Name = "Player2" });
+            Table table = new Table(4, 0);
+            table.AddPlayer(new Player(500,0));
+            table.AddPlayer(new Player(500,0));
 
             Exception exception = Assert.Throws<Exception>(() => table.RemovePlayer(8));
             Assert.AreEqual(exception.Message, "Sorry, sit not found");
@@ -148,9 +148,9 @@ namespace Test
         [Test]
         public void Test_Remove_Player_From_Seat_Number()
         {
-            Table table = new Table(4);
-            table.AddPlayer(new Player() { Name = "Player1" });
-            table.AddPlayer(new Player() { Name = "Player2" });
+            Table table = new Table(4, 0);
+            table.AddPlayer(new Player(500,0));
+            table.AddPlayer(new Player(500,0));
 
             Assert.DoesNotThrow(() => table.RemovePlayer(2));
         }
