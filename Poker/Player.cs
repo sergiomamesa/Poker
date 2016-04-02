@@ -13,6 +13,8 @@ namespace Poker
         public decimal Bet;
 
         public bool IsDealer { get; private set; }
+        public bool IsSmallBlind { get; private set; }
+        public bool IsBigBlind { get; private set; }
 
         public bool IsMe;
 
@@ -20,11 +22,13 @@ namespace Poker
 
         public Player(decimal stack, decimal bet, bool isMe = false)
         {
-            Stack = Stack;
-            Bet = Bet;
+            Stack = stack;
+            Bet = bet;
             IsMe = isMe;
 
             IsDealer = false;
+            IsSmallBlind = false;
+            IsBigBlind = false;
         }
 
         public void SetHand(Hand hand)
@@ -32,9 +36,19 @@ namespace Poker
             Hand = hand;
         }
 
-        public void SetDealer(bool value)
+        public void SetDealer()
         {
-            IsDealer = value;
+            IsDealer = true;
+        }
+
+        public void SetSmallBlind()
+        {
+            IsSmallBlind = true;
+        }
+
+        public void SetBigBlind()
+        {
+            IsBigBlind = true;
         }
 
         public bool HasCards()

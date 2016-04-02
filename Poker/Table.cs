@@ -158,23 +158,37 @@ namespace Poker
             seat.Player = null;
         }
 
-        public void SetAsDealer(int seatNumber)
+        public void SetDealer(int seatNumber)
         {
-            foreach (Player player in Players)
-            {
-                player.SetDealer(false);
-            }
-
             Player dealerPlayer = Seats[seatNumber].Player;
-            dealerPlayer.SetDealer(true);
+            if (dealerPlayer == null)
+                throw new Exception("Sorry, selected seat is empty!");
+
+            dealerPlayer.SetDealer();
+
+            var smallBlindSeat = Seats.NextSeat(seatNumber);
+            SetSmallBlind(smallBlindSeat);
+
+            var bigBlindSeat = Seats.NextSeat(smallBlindSeat);
+            SetBigBlind(bigBlindSeat);
         }
 
+        private void SetBigBlind(int seatNumber)
+        {
+            Player bigBlindPlayer = Seats[seatNumber].Player;
+            if (bigBlindPlayer == null)
+                throw new Exception("Sorry, selected seat is empty!");
 
-        //public override string ToString()
-        //{
-        //    //TODO: Implement me
+            bigBlindPlayer.SetBigBlind();
+        }
 
-        //    return base.ToString();
-        //}
+        private void SetSmallBlind(int seatNumber)
+        {
+            Player smallBlindPlayer = Seats[seatNumber].Player;
+            if (smallBlindPlayer == null)
+                throw new Exception("Sorry, selected seat is empty!");
+
+            smallBlindPlayer.SetSmallBlind();
+        }
     }
 }
