@@ -176,18 +176,12 @@ namespace Poker
         private void SetBigBlind(int seatNumber)
         {
             Player bigBlindPlayer = Seats[seatNumber].Player;
-            if (bigBlindPlayer == null)
-                throw new Exception("Sorry, selected seat is empty!");
-
             bigBlindPlayer.SetBigBlind();
         }
 
         private void SetSmallBlind(int seatNumber)
         {
             Player smallBlindPlayer = Seats[seatNumber].Player;
-            if (smallBlindPlayer == null)
-                throw new Exception("Sorry, selected seat is empty!");
-
             smallBlindPlayer.SetSmallBlind();
         }
     }
