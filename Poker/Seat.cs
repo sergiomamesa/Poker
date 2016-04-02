@@ -64,5 +64,25 @@ namespace Poker
         {
             return !IsAnyEmpty();
         }
+
+        public int NextSeat(int seatNumber)
+        {
+            var afterList = this.Skip(seatNumber);
+            var beforeList = this.Take(seatNumber);
+
+            foreach (Seat seat in afterList)
+            {
+                if (seat.IsEmpty() == false)
+                    return seat.SeatNumber;
+            }
+
+            foreach (Seat seat in beforeList)
+            {
+                if (seat.IsEmpty() == false)
+                    return seat.SeatNumber;
+            }
+
+            throw new Exception("Not an existing not empty seat");
+        }
     }
 }

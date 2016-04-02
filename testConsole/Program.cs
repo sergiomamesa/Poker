@@ -21,7 +21,7 @@ namespace testConsole
             table.AddPlayer(player5, 7);
 
             //TODO: Pending set Dealer for knowing BB and SB
-            table.SetAsDealer(6);
+            table.SetDealer(6);
 
             Card card = new Card(SuitType.Clubs, RankType.Ace);
             table.Flop(card, card, card);
