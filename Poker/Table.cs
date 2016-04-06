@@ -21,6 +21,9 @@ namespace Poker
 
         public decimal Pot;
 
+        private int BigBlind;
+        private int SmallBlind;
+
         public Table(int maxNumberPlayers, decimal pot)
         {
             if (maxNumberPlayers > MAX_NUMBER_SEATS)
@@ -33,6 +36,15 @@ namespace Poker
             Pot = pot;
 
             Seats = SeatsList.GenerateEmptySeats(MaxNumberPlayers);
+        }
+
+        public void SetBlinds(int bigBlind, int smallBlind)
+        {
+            if (smallBlind > bigBlind)
+                throw new Exception("Sorry small blind cannot be greater than big blind!");
+
+            BigBlind = bigBlind;
+            SmallBlind = smallBlind;
         }
 
         public void StartGame()

@@ -118,5 +118,15 @@ namespace Test
             var expected = table.Seats[smallBlind].Player.IsSmallBlind;
             Assert.IsTrue(expected);
         }
+
+        [TestCase(1,2)]
+        [TestCase(10, 23)]
+        public void Test_Set_Table_Blinds(int bigBlind, int smallBlind)
+        {
+            Table table = new Table(8, 0);
+
+            var exception = Assert.Throws<Exception>(() => table.SetBlinds(bigBlind,smallBlind));
+            Assert.AreEqual(exception.Message, "Sorry small blind cannot be greater than big blind!");
+        }
     }
 }

@@ -30,6 +30,7 @@ namespace testConsole
             Player player5 = new Player(30, 0);
 
             Table table = new Table(9, 300);
+            table.SetBlinds(2, 1);
             table.AddPlayer(player1, 1);
             table.AddPlayer(player2, 3);
             table.AddPlayer(player3, 4);

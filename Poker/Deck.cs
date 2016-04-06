@@ -33,6 +33,8 @@ namespace Poker
 
         private void Shuffle()
         {
+            //TODO: Do we need to shuffle our deck? Or we are just creating scenarios from zero?
+            //Shall we remove all this methods?
             var rnd = new Random();
             //            Cards = (List<Card>)Cards.OrderBy(item => rnd.Next());
             Cards = Cards.OrderBy(item => rnd.Next()).ToList();
