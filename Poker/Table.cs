@@ -21,6 +21,9 @@ namespace Poker
 
         public decimal Pot;
 
+        private int BigBlind;
+        private int SmallBlind;
+
         public Table(int maxNumberPlayers, decimal pot)
         {
             if (maxNumberPlayers > MAX_NUMBER_SEATS)
@@ -33,6 +36,15 @@ namespace Poker
             Pot = pot;
 
             Seats = SeatsList.GenerateEmptySeats(MaxNumberPlayers);
+        }
+
+        public void SetBlinds(int bigBlind, int smallBlind)
+        {
+            if (smallBlind > bigBlind)
+                throw new Exception("Sorry small blind cannot be greater than big blind!");
+
+            BigBlind = bigBlind;
+            SmallBlind = smallBlind;
         }
 
         public void StartGame()
@@ -158,23 +170,31 @@ namespace Poker
             seat.Player = null;
         }
 
-        public void SetAsDealer(int seatNumber)
+        public void SetDealer(int seatNumber)
         {
-            foreach (Player player in Players)
-            {
-                player.SetDealer(false);
-            }
-
             Player dealerPlayer = Seats[seatNumber].Player;
-            dealerPlayer.SetDealer(true);
+            if (dealerPlayer == null)
+                throw new Exception("Sorry, selected seat is empty!");
+
+            dealerPlayer.SetDealer();
+
+            var smallBlindSeat = Seats.NextSeat(seatNumber);
+            SetSmallBlind(smallBlindSeat);
+
+            var bigBlindSeat = Seats.NextSeat(smallBlindSeat);
+            SetBigBlind(bigBlindSeat);
         }
 
+        private void SetBigBlind(int seatNumber)
+        {
+            Player bigBlindPlayer = Seats[seatNumber].Player;
+            bigBlindPlayer.SetBigBlind();
+        }
 
-        //public override string ToString()
-        //{
-        //    //TODO: Implement me
-
-        //    return base.ToString();
-        //}
+        private void SetSmallBlind(int seatNumber)
+        {
+            Player smallBlindPlayer = Seats[seatNumber].Player;
+            smallBlindPlayer.SetSmallBlind();
+        }
     }
 }
