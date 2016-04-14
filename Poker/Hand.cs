@@ -15,9 +15,6 @@ namespace Poker
         {
             LeftCard = leftCard;
             RightCard = rightCard;
-
-            //if (leftCard.Equals(rightCard))
-            //    throw new Exception("Duplicated card!");
         }
        
         public bool IsPaired()

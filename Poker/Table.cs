@@ -64,7 +64,6 @@ namespace Poker
             if (Board.BoardState != BoardStateType.Preflop)
                 throw new Exception("The board is not in PreFlop!");
 
-            Deck.GiveCard(); //burns card
             Board.FirstCard = Deck.GiveCard();
             Board.SecondCard = Deck.GiveCard();
             Board.ThirdCard = Deck.GiveCard();
@@ -75,7 +74,7 @@ namespace Poker
         {
             if (Board.BoardState != BoardStateType.Flop)
                 throw new Exception("The board has to go through Flop first!");
-            Deck.GiveCard(); //burns card
+            
             Board.FourthCard = Deck.GiveCard();
             Board.SetBoardState();
         }
@@ -84,8 +83,7 @@ namespace Poker
         {
             if (Board.BoardState != BoardStateType.Turn)
                 throw new Exception("The board has to go through Turn first!");
-
-            Deck.GiveCard(); //burns card
+            
             Board.FifthCard = Deck.GiveCard();
             Board.SetBoardState();
         }
@@ -162,7 +160,7 @@ namespace Poker
         {
             Seat seat = Seats.Find(s => s.SeatNumber == seatNumber);
             if (seat == null)
-                throw new Exception("Sorry, sit not found");
+                throw new Exception("Sorry, seat not found");
 
             if (seat.IsEmpty())
                 throw new Exception("This seat is empty");

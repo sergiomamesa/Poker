@@ -36,7 +36,7 @@ namespace Poker
         internal Seat GetFreeSeat()
         {
             if (IsNoneEmpty())
-                throw new Exception("Sorry, not empty seat found");
+                throw new Exception("Sorry, no empty seat found");
 
             Seat seat = this.First(i => i.IsEmpty());
             
@@ -72,17 +72,17 @@ namespace Poker
 
             foreach (Seat seat in afterList)
             {
-                if (seat.IsEmpty() == false)
+                if (seat.IsEmpty() == false) //if (!seat.IsEmpty()) ??
                     return seat.SeatNumber;
             }
 
             foreach (Seat seat in beforeList)
             {
-                if (seat.IsEmpty() == false)
+                if (seat.IsEmpty() == false)//if (!seat.IsEmpty()) ??
                     return seat.SeatNumber;
             }
 
-            throw new Exception("Not an existing not empty seat");
+            throw new Exception("Not an existing not empty seat");//TODO: Rephrase this
         }
     }
 }
