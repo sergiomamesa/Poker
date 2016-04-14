@@ -28,11 +28,6 @@ namespace Poker
 
         public BoardStateType BoardState { get; set; } 
 
-        public void SetBoardState(BoardStateType boardState)
-        {
-            BoardState = boardState;
-        }
-
         public void SetBoardState()
         {
             if (FirstCard == null)
