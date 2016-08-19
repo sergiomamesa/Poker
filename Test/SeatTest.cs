@@ -135,7 +135,7 @@ namespace Test
         }
 
         [Test]
-        public void Test_Remove_Player_From_Non_Existing_Seat()
+        public void TestRemovePlayer_FromNonExistingSeat_ThrowsException()
         {
             Table table = new Table(4);
             table.AddPlayer(new Player(500,0));
