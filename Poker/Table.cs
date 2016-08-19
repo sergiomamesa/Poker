@@ -24,7 +24,7 @@ namespace Poker
         private int BigBlind;
         private int SmallBlind;
 
-        public Table(int maxNumberPlayers, decimal pot)
+        public Table(int maxNumberPlayers, decimal pot = 0)
         {
             if (maxNumberPlayers > MAX_NUMBER_SEATS)
                 throw new Exception(String.Format("MaxNumberPlayers cannont exceed {0}", MAX_NUMBER_SEATS));

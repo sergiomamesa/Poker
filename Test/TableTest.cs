@@ -40,8 +40,8 @@ namespace Test
             Assert.AreEqual(numberOfCards, 52);
         }
 
-        [Test]
-        public void Test_Game_Starts_Players_Have_Their_Cards()
+        [TestCase(2)]
+        public void Test_Game_Starts_Players_Have_Their_Cards(int seatNumber)
         {
             Table table = new Table(4, 0);
             table.AddPlayer(new Player(500, 0));
@@ -50,7 +50,7 @@ namespace Test
 
             table.StartGame();
 
-            bool expected = table.Players.ToList()[1].HasCards();
+            bool expected = table.Players.ToList()[seatNumber].HasCards();
 
             Assert.AreEqual(expected, true);
         }
