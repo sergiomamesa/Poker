@@ -1,5 +1,6 @@
 ﻿using NUnit.Framework;
 using Poker;
+using Poker.Enums;
 using System;
 using System.Linq;
 

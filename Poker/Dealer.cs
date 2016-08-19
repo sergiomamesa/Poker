@@ -6,18 +6,6 @@ using System.Threading.Tasks;
 
 namespace Poker
 {
-    public enum PokerHands
-    {
-        Pair = 0,
-        TwoPair,
-        ThreeOfKind,
-        Straight,
-        Flush,
-        FullHouse,
-        FourOfKind,
-        StraightFlush,
-        RoyalFlush
-    }
     public class Dealer
     {
         private List<Card> PlayingCards { get; set; }

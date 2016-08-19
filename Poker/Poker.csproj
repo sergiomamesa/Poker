@@ -43,9 +43,14 @@
     <Compile Include="Card.cs" />
     <Compile Include="Dealer.cs" />
     <Compile Include="Deck.cs" />
+    <Compile Include="Enums\PokerHands.cs" />
+    <Compile Include="Enums\SuitType.cs" />
+    <Compile Include="Enums\RankType.cs" />
+    <Compile Include="Enums\BoardStateType.cs" />
     <Compile Include="Hand.cs" />
     <Compile Include="Player.cs" />
     <Compile Include="Seat.cs" />
+    <Compile Include="SeatsList.cs" />
     <Compile Include="Table.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

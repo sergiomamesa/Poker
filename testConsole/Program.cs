@@ -1,5 +1,6 @@
 ﻿using System;
 using Poker;
+using Poker.Enums;
 
 namespace testConsole
 {

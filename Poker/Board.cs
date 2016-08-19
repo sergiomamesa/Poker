@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Poker.Enums;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -6,14 +7,6 @@ using System.Threading.Tasks;
 
 namespace Poker
 {
-    public enum BoardStateType
-    {
-        Preflop = 0,
-        Flop,
-        Turn,
-        River
-    }
-
     public class Board
     {
         public Card FirstCard { get; set; }
