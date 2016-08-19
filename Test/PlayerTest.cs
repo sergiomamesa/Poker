@@ -8,7 +8,7 @@ namespace Test
     public class PlayerTest
     {
         [Test]
-        public void Test_Player_Has_No_Hand()
+        public void Test_NewPlayer_JustSat_NoCards()
         {
             Player player = new Player(500,0);
 
@@ -18,7 +18,7 @@ namespace Test
         }
 
         [Test]
-        public void Test_Player_Has_Hand()
+        public void Test_SetHand_SpecificPlayer_HasCards()
         {
             Player player = new Player(500, 0);
             Deck deck = new Deck();

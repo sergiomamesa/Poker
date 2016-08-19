@@ -22,7 +22,7 @@ namespace Test
 
         [TestCase(SuitType.Clubs, RankType.Ace, SuitType.Diamonds, RankType.Ace)]
         [TestCase(SuitType.Spades, RankType.Eight, SuitType.Hearts, RankType.Eight)]
-        public void Test_Hand_Is_Paired(SuitType leftCardSuit, RankType leftCardRank,SuitType rightCardSuit, RankType rightCardRank)
+        public void Test_IsPaired_HandPaired_IsTrue(SuitType leftCardSuit, RankType leftCardRank,SuitType rightCardSuit, RankType rightCardRank)
         {
             Card leftCard = new Card(leftCardSuit, leftCardRank);
             Card rightCard = new Card(rightCardSuit, rightCardRank);
@@ -35,7 +35,7 @@ namespace Test
 
         [TestCase(SuitType.Clubs, RankType.Ace, SuitType.Diamonds, RankType.King)]
         [TestCase(SuitType.Spades, RankType.Four, SuitType.Hearts, RankType.Eight)]
-        public void Test_Hand_Is_Not_Paired(SuitType leftCardSuit, RankType leftCardRank, SuitType rightCardSuit, RankType rightCardRank)
+        public void Test_IsPaired_HandNotPaired_IsFalse(SuitType leftCardSuit, RankType leftCardRank, SuitType rightCardSuit, RankType rightCardRank)
         {
             Card leftCard = new Card(leftCardSuit, leftCardRank);
             Card rightCard = new Card(rightCardSuit, rightCardRank);
@@ -48,7 +48,7 @@ namespace Test
 
         [TestCase(SuitType.Clubs, RankType.Eight, SuitType.Clubs, RankType.Seven)]
         [TestCase(SuitType.Spades, RankType.Eight, SuitType.Spades, RankType.Ace)]
-        public void Test_Hand_Is_Suited(SuitType leftCardSuit, RankType leftCardRank, SuitType rightCardSuit, RankType rightCardRank)
+        public void Test_IsSuited_HandSuited_IsTrue(SuitType leftCardSuit, RankType leftCardRank, SuitType rightCardSuit, RankType rightCardRank)
         {
             Card leftCard = new Card(leftCardSuit, leftCardRank);
             Card rightCard = new Card(rightCardSuit, rightCardRank);
@@ -61,7 +61,7 @@ namespace Test
 
         [TestCase(SuitType.Spades, RankType.Eight, SuitType.Clubs, RankType.Seven)]
         [TestCase(SuitType.Hearts, RankType.Eight, SuitType.Spades, RankType.Ace)]
-        public void Test_Hand_Is_Not_Suited(SuitType leftCardSuit, RankType leftCardRank, SuitType rightCardSuit, RankType rightCardRank)
+        public void Test_IsSuited_HandNotSuited_IsFalse(SuitType leftCardSuit, RankType leftCardRank, SuitType rightCardSuit, RankType rightCardRank)
         {
             Card leftCard = new Card(leftCardSuit, leftCardRank);
             Card rightCard = new Card(rightCardSuit, rightCardRank);
@@ -76,7 +76,7 @@ namespace Test
         [TestCase(SuitType.Spades, RankType.King,SuitType.Spades, RankType.Ace)]
         [TestCase(SuitType.Spades, RankType.Two,SuitType.Spades, RankType.Ace)]
         [TestCase(SuitType.Spades, RankType.Ace, SuitType.Spades, RankType.Two)]
-        public void Test_Hand_Is_Connected(SuitType leftCardSuit, RankType leftCardRank, SuitType rightCardSuit, RankType rightCardRank)
+        public void Test_IsConnected_HandConnected_IsTrue(SuitType leftCardSuit, RankType leftCardRank, SuitType rightCardSuit, RankType rightCardRank)
         {
             Card leftCard = new Card(leftCardSuit, leftCardRank);
             Card rightCard = new Card(rightCardSuit, rightCardRank);
@@ -89,7 +89,7 @@ namespace Test
 
         [TestCase(SuitType.Clubs, RankType.Eight, SuitType.Clubs, RankType.Five)]
         [TestCase(SuitType.Spades, RankType.King, SuitType.Spades, RankType.Jack)]
-        public void Test_Hand_Is_Not_Connected(SuitType leftCardSuit, RankType leftCardRank, SuitType rightCardSuit, RankType rightCardRank)
+        public void Test_IsConnected_HandNotConnected_IsFalse(SuitType leftCardSuit, RankType leftCardRank, SuitType rightCardSuit, RankType rightCardRank)
         {
             Card leftCard = new Card(leftCardSuit, leftCardRank);
             Card rightCard = new Card(rightCardSuit, rightCardRank);
@@ -101,7 +101,7 @@ namespace Test
         }
 
         [Test]
-        public void Test_Hand_Has_No_Left_Card()
+        public void Test_HasTwoCards_NoLeftCard_IsFalse()
         {
             Card rightCard = new Card(SuitType.Clubs, RankType.Ace);
             Hand hand = new Hand(null, rightCard);
@@ -112,7 +112,7 @@ namespace Test
         }
 
         [Test]
-        public void Test_Hand_Has_No_Right_Card()
+        public void Test_HasTwoCards_NoRightCard_IsFalse()
         {
             Card leftCard = new Card(SuitType.Clubs, RankType.Ace);
             Hand hand = new Hand(leftCard, null);
@@ -120,6 +120,18 @@ namespace Test
             bool expected = hand.HasTwoCards();
 
             Assert.AreEqual(expected, false);
+        }
+
+        [Test]
+        public void Test_HasTwoCards_WithTowCards_IsTrue()
+        {
+            Card leftCard = new Card(SuitType.Clubs, RankType.Ace);
+            Card rightCard = new Card(SuitType.Spades, RankType.Ace);
+            Hand hand = new Hand(leftCard, rightCard);
+
+            bool expected = hand.HasTwoCards();
+
+            Assert.AreEqual(expected, true);
         }
     }
 }

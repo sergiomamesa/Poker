@@ -9,7 +9,7 @@ namespace Test
     class BoardTest
     {
         [Test]
-        public void Test_BoardState_Is_PreFlop()
+        public void Test_StartGame_BoardStateIsPreFlop_IsTrue()
         {
             Table table = new Table(4,0);
             table.AddPlayer(new Player(500,0));
@@ -22,7 +22,7 @@ namespace Test
         }
 
         [Test]
-        public void Test_BoardState_Is_Flop()
+        public void Test_Flop_BoardStateIsFlop_IsTrue()
         {
             Table table = new Table(4,0);
             table.AddPlayer(new Player(500,0));
@@ -36,7 +36,7 @@ namespace Test
         }
 
         [Test]
-        public void Test_Board_State_Is_Turn()
+        public void Test_Turn_BoardStateIsTurn_IsTrue()
         {
             Table table = new Table(4,0);
             table.AddPlayer(new Player(500,0));
@@ -51,7 +51,7 @@ namespace Test
         }
 
         [Test]
-        public void Test_Board_Didnt_Go_Through_Flop()
+        public void Test_Turn_AfterStartGame_ThrowsException()
         {
             Table table = new Table(4,0);
             table.AddPlayer(new Player(500,0));
@@ -65,7 +65,7 @@ namespace Test
         }
 
         [Test]
-        public void Test_Board_state_is_River()
+        public void Test_River_BoardStateIsRiver_IsTrue()
         {
             Table table = new Table(4,0);
             table.AddPlayer(new Player(500,0));
@@ -81,7 +81,7 @@ namespace Test
         }
 
         [Test]
-        public void Test_Board_Didnt_Go_Through_Turn()
+        public void Test_River_WhenInFlop_ThrowsException()
         {
             Table table = new Table(4,0);
             table.AddPlayer(new Player(500,0));

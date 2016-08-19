@@ -12,7 +12,7 @@ namespace Test
         [TestCase(6)]
         [TestCase(8)]
         [TestCase(9)]
-        public void Test_Generated_Seats_Are_Empty(int seatNumber)
+        public void Test_NewTable_SeatsEmpty_ReturnsTrue(int seatNumber)
         {
             Table table = new Table(9);
             Seat seat = table.Seats[seatNumber];
