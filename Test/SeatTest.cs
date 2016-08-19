@@ -23,7 +23,7 @@ namespace Test
         }
 
         [Test]
-        public void Test_Table_Has_Some_Empty_Seats()
+        public void Test_IsAnyEmpty_HasSomeEmptySeats_ReturnsTrue()
         {
             Table table = new Table(5);
             table.AddPlayer(new Player(500, 0));
@@ -36,7 +36,7 @@ namespace Test
         }
 
         [Test]
-        public void Test_Table_Has_None_Empty_Seats()
+        public void Test_IsNoneEmpty_HasNoneEmptySeats_ReturnsTrue()
         {
             Table table = new Table(4);
             table.AddPlayer(new Player(500, 0));
@@ -50,7 +50,7 @@ namespace Test
         }
 
         [Test]
-        public void Test_Table_Has_No_Empty_Seats()
+        public void Test_AddPlayer_HasNoEmptySeats_ThrowsException()
         {
             Table table = new Table(4);
             table.AddPlayer(new Player(500, 0));
@@ -63,7 +63,7 @@ namespace Test
         }
 
         [Test]
-        public void Test_Table_AddPlayer_Specific_Seat()
+        public void Test_AddPlayer_SeatDoesNotExist_ThrowsException()
         {
             Table table = new Table(4);
 
@@ -72,7 +72,7 @@ namespace Test
         }
 
         [Test]
-        public void Test_Table_AddPlayer_Already_Player_Sitting()
+        public void Test_AddPlayer_SeatNotEmpty_ThrowsException()
         {
             Table table = new Table(4);
             table.AddPlayer(new Player(500,0), 3);
@@ -82,7 +82,7 @@ namespace Test
         }
 
         [Test]
-        public void Test_Table_Already_Contains_Player()
+        public void Test_AddPlayer_TableAlreadyContainsPlayer_ThrowsException()
         {
             Table table = new Table(4);
             var player = new Player(500, 0);
@@ -93,7 +93,7 @@ namespace Test
         }
 
         [Test]
-        public void Test_Remove_Player_Empty_Table()
+        public void Test_RemovePlayer_EmptyTable_ThrowsException()
         {
             Table table = new Table(4);
             var player = new Player(500, 0);
@@ -103,7 +103,7 @@ namespace Test
         }
 
         [Test]
-        public void Test_Remove_Player_By_Player()
+        public void Test_RemovePlayer_ByExistingPlayer_IsOk()
         {
             Table table = new Table(4);
             Player player = new Player(500, 0);
@@ -113,7 +113,7 @@ namespace Test
         }
 
         [Test]
-        public void Test_Remove_Player_Does_Not_Exist()
+        public void Test_RemovePlayer_DoesNotExist_ThrowsException()
         {
             Table table = new Table(4);
             table.AddPlayer(new Player(500,0));
@@ -124,7 +124,7 @@ namespace Test
         }
 
         [Test]
-        public void Test_Remove_Player_From_Empty_Seat()
+        public void Test_RemovePlayer_FromEmptySeat_ThrowsException()
         {
             Table table = new Table(4);
             table.AddPlayer(new Player(500,0));
@@ -135,7 +135,7 @@ namespace Test
         }
 
         [Test]
-        public void TestRemovePlayer_FromNonExistingSeat_ThrowsException()
+        public void Test_RemovePlayer_FromNonExistingSeat_ThrowsException()
         {
             Table table = new Table(4);
             table.AddPlayer(new Player(500,0));
@@ -147,11 +147,13 @@ namespace Test
 
         [TestCase(2)]
         [TestCase(3)]
-        public void TestRemovePlayer_FromSeatNumber_IsOk(int seatNumber)
+        public void Test_RemovePlayer_FromSeatNumber_IsOk(int seatNumber)
         {
             Table table = new Table(4);
             table.AddPlayer(new Player(500,0));
             table.AddPlayer(new Player(500,0));
+            table.AddPlayer(new Player(500, 0));
+            table.AddPlayer(new Player(500, 0));
 
             Assert.DoesNotThrow(() => table.RemovePlayer(seatNumber));
         }
