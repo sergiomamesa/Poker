@@ -145,14 +145,15 @@ namespace Test
             Assert.AreEqual(exception.Message, "Sorry, seat not found");
         }
 
-        [Test]
-        public void Test_Remove_Player_From_Seat_Number()
+        [TestCase(2)]
+        [TestCase(3)]
+        public void TestRemovePlayer_FromSeatNumber_IsOk(int seatNumber)
         {
             Table table = new Table(4);
             table.AddPlayer(new Player(500,0));
             table.AddPlayer(new Player(500,0));
 
-            Assert.DoesNotThrow(() => table.RemovePlayer(2));
+            Assert.DoesNotThrow(() => table.RemovePlayer(seatNumber));
         }
 
     }
